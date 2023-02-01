@@ -3,8 +3,8 @@
 
 ## 📍 Description
 Android application created using the modern toolkit Jetpack Compose. This application allows you to use two function:<br>
-- Speech to Text that allow to receive the input voice through the reception from the microphone and to convert the audio into text and display it inside the box with the possibility to save the text inside a file with the extension ". txt".<br>
-- Text to Speech that allow to insert a text inside the box and convert the text to audio with the option to choose the tone and speed of the voice that will play the text inserted. The entry will read the text in the language configured within the code.<br>
+- **Speech to Text** that allow to receive the input voice through the reception from the microphone and to convert the audio into text and display it inside the box with the possibility to save the text inside a file with the extension ". txt".<br>
+- **Text to Speech** that allow to insert a text inside the box and convert the text to audio with the option to choose the tone and speed of the voice that will play the text inserted. The entry will read the text in the language configured within the code.<br>
 
 
 ## 🛠️ Config
@@ -30,7 +30,7 @@ You can custom the app by editing:
 
 Language of TextToSpeech
 
-TextToSpeech.kt at line:
+* *TextToSpeech.kt* at line:
 ```
 txtToSpeech.language = Locale.ITALIAN
 ```
