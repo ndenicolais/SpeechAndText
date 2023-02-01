@@ -121,7 +121,7 @@ fun TextToSpeech() {
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(top = 200.dp),
+                            .padding(top = 150.dp),
                         verticalArrangement = Arrangement.Bottom,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
