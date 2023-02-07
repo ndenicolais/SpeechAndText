@@ -3,7 +3,6 @@ package com.denicks21.speechandtext.screens
 import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Mic
@@ -13,7 +12,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -45,7 +43,7 @@ fun SpeechToText() {
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Text(
-                        text = "SpeechToText",
+                        "SpeechToText",
                         modifier = Modifier.fillMaxWidth(),
                         color = GreyDark,
                         fontSize = 25.sp,
@@ -61,13 +59,12 @@ fun SpeechToText() {
                 .fillMaxSize()
                 .padding(it)
         ) {
-
             Column(
                 modifier = Modifier.fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = speechContext.speechInput.value,
+                    speechContext.speechInput.value,
                     fontSize = 20.sp,
                     modifier = Modifier
                         .fillMaxWidth()
@@ -85,29 +82,17 @@ fun SpeechToText() {
                     verticalAlignment = Alignment.Bottom,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    Button(
-                        onClick = {
-                            speechContext.askSpeechInput(context)
-                        },
-                        modifier = Modifier
-                            .height(80.dp)
-                            .width(80.dp)
-                            .clip(RoundedCornerShape(45.dp)),
-                        colors = ButtonDefaults.buttonColors(
-                            backgroundColor = YellowDark
-                        )
+                    FloatingActionButton(
+                        onClick = { speechContext.askSpeechInput(context) },
+                        backgroundColor = YellowDark
                     ) {
-                        Row() {
-                            Icon(
-                                imageVector = Icons.Filled.Mic,
-                                contentDescription = "Speak",
-                                modifier = Modifier
-                                    .fillMaxSize(),
-                                tint = GreyDark
-                            )
-                        }
+                        Icon(
+                            imageVector = Icons.Filled.Mic,
+                            contentDescription = "Speak",
+                            tint = GreyDark
+                        )
                     }
-                    Button(
+                    FloatingActionButton(
                         onClick = {
                             if (speechContext.speechInput.value.isNotEmpty()) {
                                 inputDialogState.value = true
@@ -118,29 +103,19 @@ fun SpeechToText() {
                                 ).show()
                             }
                         },
-                        modifier = Modifier
-                            .height(80.dp)
-                            .width(80.dp)
-                            .clip(RoundedCornerShape(45.dp)),
-                        colors = ButtonDefaults.buttonColors(
-                            backgroundColor = YellowDark
-                        )
+                        backgroundColor = YellowDark
                     ) {
-                        Row() {
-                            Icon(
-                                imageVector = Icons.Filled.Save,
-                                contentDescription = "Save",
-                                modifier = Modifier
-                                    .fillMaxSize(),
-                                tint = GreyDark
-                            )
-                        }
+                        Icon(
+                            imageVector = Icons.Filled.Save,
+                            contentDescription = "Save",
+                            tint = GreyDark
+                        )
                         if (inputDialogState.value) {
                             AlertDialog(
                                 onDismissRequest = { inputDialogState.value = false },
                                 title = {
                                     Text(
-                                        text = "File Name",
+                                        "File Name",
                                         fontWeight = FontWeight.Bold
                                     )
                                 },
@@ -150,7 +125,7 @@ fun SpeechToText() {
                                         onValueChange = { fileName.value = it },
                                         label = {
                                             Text(
-                                                text = "Insert file's name",
+                                                "Insert file's name",
                                                 color = GreyDark
                                             )
                                         },
@@ -164,33 +139,39 @@ fun SpeechToText() {
                                     )
                                 },
                                 confirmButton = {
-                                    Button(onClick = {
-                                        if (fileName.value.isNotEmpty() && speechContext.speechInput.value.isNotEmpty()) {
-                                            writeToFile(context, fileName.value, speechContext.speechInput.value)
-                                            inputDialogState.value = false
-                                            Toast.makeText(
-                                                context, "Saved",
-                                                Toast.LENGTH_SHORT
-                                            ).show()
-                                        } else {
-                                            Toast.makeText(
-                                                context, "The field name is empty",
-                                                Toast.LENGTH_SHORT
-                                            ).show()
+                                    Button(
+                                        onClick = {
+                                            if (fileName.value.isNotEmpty() && speechContext.speechInput.value.isNotEmpty()) {
+                                                writeToFile(
+                                                    context,
+                                                    fileName.value,
+                                                    speechContext.speechInput.value
+                                                )
+                                                inputDialogState.value = false
+                                                Toast.makeText(
+                                                    context, "Saved",
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
+                                            } else {
+                                                Toast.makeText(
+                                                    context, "The field name is empty",
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
+                                            }
                                         }
-                                    }) {
+                                    ) {
                                         Text(
-                                            text = "Ok",
+                                            "Ok",
                                             color = GreyDark
                                         )
                                     }
                                 },
                                 dismissButton = {
-                                    Button(onClick = {
-                                        inputDialogState.value = false
-                                    }) {
+                                    Button(
+                                        onClick = { inputDialogState.value = false }
+                                    ) {
                                         Text(
-                                            text = "Cancel",
+                                            "Cancel",
                                             color = GreyDark
                                         )
                                     }

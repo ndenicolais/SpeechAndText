@@ -36,8 +36,7 @@ fun TextToSpeech() {
         var speechRate by remember { mutableStateOf(1f) }
 
         Scaffold(
-            modifier = Modifier
-                .fillMaxSize(),
+            modifier = Modifier.fillMaxSize(),
             scaffoldState = scaffoldState,
             topBar = {
                 TopAppBar {
@@ -46,7 +45,7 @@ fun TextToSpeech() {
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         Text(
-                            text = "TextToSpeech",
+                            "TextToSpeech",
                             modifier = Modifier.fillMaxWidth(),
                             color = GreyDark,
                             fontSize = 25.sp,
@@ -74,13 +73,13 @@ fun TextToSpeech() {
                         onValueChange = { textFieldState = it },
                         label = {
                             Text(
-                                text = "Text to convert",
+                                "Text to convert",
                                 color = GreyDark
                             )
                         },
                         placeholder = {
                             Text(
-                                text = "Enter some text here",
+                                "Enter some text here",
                                 color = GreyDark
                             )
                         },
@@ -172,8 +171,7 @@ fun TextToSpeech() {
                                 Icon(
                                     imageVector = Icons.Filled.Mic,
                                     contentDescription = "Speak",
-                                    modifier = Modifier
-                                        .fillMaxSize(),
+                                    modifier = Modifier.fillMaxSize(),
                                     tint = GreyDark
                                 )
                             }
