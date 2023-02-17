@@ -10,21 +10,22 @@ import com.denicks21.speechandtext.screens.SplashScreen
 import com.denicks21.speechandtext.screens.TextToSpeech
 
 @Composable
-fun NavGraph (navController: NavHostController){
+fun NavGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = NavScreens.Splash.route)
+        startDestination = NavScreens.Splash.route
+    )
     {
-        composable(route = NavScreens.Splash.route){
+        composable(route = NavScreens.Splash.route) {
             SplashScreen(navController = navController)
         }
-        composable(route = NavScreens.Home.route){
+        composable(route = NavScreens.Home.route) {
             HomeScreen(navController = navController)
         }
-        composable(route = NavScreens.SpeechToText.route){
+        composable(route = NavScreens.SpeechToText.route) {
             SpeechToText()
         }
-        composable(route = NavScreens.TextToSpeech.route){
+        composable(route = NavScreens.TextToSpeech.route) {
             TextToSpeech()
         }
     }

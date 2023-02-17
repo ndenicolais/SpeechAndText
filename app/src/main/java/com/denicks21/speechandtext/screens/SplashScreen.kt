@@ -36,24 +36,25 @@ fun SplashScreen(navController: NavController) {
                 durationMillis = 500,
                 easing = {
                     OvershootInterpolator(4f).getInterpolation(it)
-                })
+                }
+            )
         )
         delay(800L)
         navController.navigate("Homescreen")
     }
-
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier.fillMaxSize()
     ) {
         Column(
-            modifier = Modifier
-                .fillMaxSize(),
+            modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = stringResource(id = R.string.app_name),
+                text = stringResource(
+                    id = R.string.app_name
+                ),
                 modifier = Modifier.fillMaxWidth(),
                 color = GreyDark,
                 fontSize = 50.sp,
@@ -61,7 +62,9 @@ fun SplashScreen(navController: NavController) {
                 textAlign = TextAlign.Center
             )
             Image(
-                painter = painterResource(id = R.drawable.logo),
+                painter = painterResource(
+                    id = R.drawable.logo
+                ),
                 contentDescription = "Logo",
                 modifier = Modifier
                     .scale(scale.value)

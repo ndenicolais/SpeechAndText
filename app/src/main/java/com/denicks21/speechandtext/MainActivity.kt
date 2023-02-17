@@ -10,15 +10,8 @@ import android.speech.SpeechRecognizer
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import com.denicks21.speechandtext.navigation.NavGraph
 import com.denicks21.speechandtext.ui.theme.GreyDark
@@ -28,6 +21,7 @@ import java.util.*
 
 class MainActivity : ComponentActivity() {
     var speechInput = mutableStateOf("Speech text should come here")
+
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
