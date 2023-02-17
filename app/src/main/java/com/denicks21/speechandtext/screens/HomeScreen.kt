@@ -1,13 +1,11 @@
 package com.denicks21.speechandtext.screens
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -29,7 +27,7 @@ fun HomeScreen(navController: NavController) {
         Scaffold(
             scaffoldState = scaffoldState,
             topBar = {
-                TopAppBar() {
+                TopAppBar {
                     Row(
                         horizontalArrangement = Arrangement.Center,
                         modifier = Modifier.fillMaxWidth()
@@ -46,19 +44,15 @@ fun HomeScreen(navController: NavController) {
                 }
             }
         ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(Color.White),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
+            Box(
+                modifier = Modifier.fillMaxSize()
             ) {
-                Row(
+                Column(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(10.dp)
-                        .padding(top = 300.dp),
-                    horizontalArrangement = Arrangement.Center
+                        .fillMaxSize()
+                        .padding(top = 250.dp),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Button(
                         onClick = {
@@ -68,7 +62,9 @@ fun HomeScreen(navController: NavController) {
                             .width(180.dp)
                             .height(80.dp)
                             .padding(5.dp),
-                        colors = ButtonDefaults.buttonColors(backgroundColor = GreyDark),
+                        colors = ButtonDefaults.buttonColors(
+                            backgroundColor = GreyDark
+                        ),
                     ) {
                         Text(
                             text = "SpeechToText",
@@ -78,6 +74,11 @@ fun HomeScreen(navController: NavController) {
                             fontWeight = FontWeight.Bold
                         )
                     }
+                    Spacer(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(20.dp)
+                    )
                     Button(
                         onClick = {
                             navController.navigate(NavScreens.TextToSpeech.route)
@@ -86,7 +87,9 @@ fun HomeScreen(navController: NavController) {
                             .width(180.dp)
                             .height(80.dp)
                             .padding(5.dp),
-                        colors = ButtonDefaults.buttonColors(backgroundColor = GreyDark),
+                        colors = ButtonDefaults.buttonColors(
+                            backgroundColor = GreyDark
+                        ),
                     ) {
                         Text(
                             text = "TextToSpeech",
@@ -96,15 +99,19 @@ fun HomeScreen(navController: NavController) {
                             fontWeight = FontWeight.Bold
                         )
                     }
+                    Column(
+                        modifier = Modifier.fillMaxSize(),
+                        verticalArrangement = Arrangement.Bottom,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Text(
+                            text = "v." + BuildConfig.VERSION_NAME,
+                            modifier = Modifier.fillMaxWidth(),
+                            textAlign = TextAlign.Center,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
                 }
-                Spacer(modifier = Modifier.weight(1f))
-                Text(
-                    text = "v." + BuildConfig.VERSION_NAME,
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    textAlign = TextAlign.Center,
-                    fontWeight = FontWeight.Bold
-                )
             }
         }
     }

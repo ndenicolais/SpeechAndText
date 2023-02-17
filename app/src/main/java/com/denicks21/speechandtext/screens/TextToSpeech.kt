@@ -2,14 +2,12 @@ package com.denicks21.speechandtext.screens
 
 import android.speech.tts.TextToSpeech
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Mic
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -119,12 +117,16 @@ fun TextToSpeech() {
                     }
                     Column(
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 150.dp),
+                            .fillMaxSize()
+                            .padding(
+                                start = 20.dp,
+                                end = 20.dp,
+                                bottom = 20.dp
+                            ),
                         verticalArrangement = Arrangement.Bottom,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Button(
+                        FloatingActionButton(
                             onClick = {
                                 if (isBtnEnabled)
                                     isBtnEnabled = false
@@ -150,31 +152,13 @@ fun TextToSpeech() {
                                 }
                                 isBtnEnabled = true
                             },
-                            enabled = isBtnEnabled,
-                            modifier = Modifier
-                                .padding(
-                                    start = 20.dp,
-                                    end = 20.dp,
-                                    bottom = 20.dp
-                                )
-                                .height(80.dp)
-                                .width(80.dp)
-                                .clip(RoundedCornerShape(45.dp)),
-                            colors = ButtonDefaults.buttonColors(
-                                backgroundColor = YellowDark
-                            )
+                            backgroundColor = YellowDark
                         ) {
-                            Column(
-                                horizontalAlignment = Alignment.CenterHorizontally,
-                                verticalArrangement = Arrangement.Center
-                            ) {
-                                Icon(
-                                    imageVector = Icons.Filled.Mic,
-                                    contentDescription = "Speak",
-                                    modifier = Modifier.fillMaxSize(),
-                                    tint = GreyDark
-                                )
-                            }
+                            Icon(
+                                imageVector = Icons.Filled.Mic,
+                                contentDescription = "Speak",
+                                tint = GreyDark
+                            )
                         }
                     }
                 }

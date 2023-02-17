@@ -33,11 +33,10 @@ fun SpeechToText() {
     val speechContext = context as MainActivity
 
     Scaffold(
-        modifier = Modifier
-            .fillMaxSize(),
+        modifier = Modifier.fillMaxSize(),
         scaffoldState = scaffoldState,
         topBar = {
-            TopAppBar() {
+            TopAppBar {
                 Row(
                     horizontalArrangement = Arrangement.Center,
                     modifier = Modifier.fillMaxWidth()
