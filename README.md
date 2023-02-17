@@ -8,12 +8,6 @@ Android application created using the modern toolkit Jetpack Compose. Inside the
 
 
 ## 🛠️ Config
-### Gradle
-Add dependency for the Navigation component:
-```
-implementation 'androidx.navigation:navigation-compose:2.5.3'
-```
-
 ### Manifest
 Add permissions for save file and record audio:
 ```
