@@ -138,6 +138,7 @@ fun TextToSpeech() {
                                 ) {
                                     if (it == TextToSpeech.SUCCESS) {
                                         tts?.let { txtToSpeech ->
+                                            // Change ITALIAN with your prefered language
                                             txtToSpeech.language = Locale.ITALIAN
                                             txtToSpeech.setPitch(pitch)
                                             txtToSpeech.setSpeechRate(speechRate)
