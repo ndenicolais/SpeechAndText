@@ -10,18 +10,28 @@ import android.speech.SpeechRecognizer
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.material.DrawerValue
+import androidx.compose.material.ModalDrawer
+import androidx.compose.material.Surface
+import androidx.compose.material.rememberDrawerState
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.compose.rememberNavController
 import com.denicks21.speechandtext.navigation.NavGraph
+import com.denicks21.speechandtext.ui.composables.CustomDrawer
 import com.denicks21.speechandtext.ui.theme.GreyDark
 import com.denicks21.speechandtext.ui.theme.SpeechAndTextTheme
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import kotlinx.coroutines.launch
 import java.util.*
 
 class MainActivity : ComponentActivity() {
     var speechInput = mutableStateOf("Speech text should come here")
 
+    @OptIn(ExperimentalAnimationApi::class)
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +44,47 @@ class MainActivity : ComponentActivity() {
                         darkIcons = false
                     )
                 }
-                val navController = rememberNavController()
-                NavGraph(navController = navController)
+                val navController = rememberAnimatedNavController()
+                Surface {
+                    val drawerState = rememberDrawerState(DrawerValue.Closed)
+                    val scope = rememberCoroutineScope()
+                    val openDrawer = {
+                        scope.launch {
+                            drawerState.open()
+                        }
+                    }
+                    ModalDrawer(
+                        drawerState = drawerState,
+                        gesturesEnabled = drawerState.isOpen,
+                        drawerContent = {
+                            CustomDrawer(
+                                onDestinationClicked = { route ->
+                                    scope.launch {
+                                        drawerState.close()
+                                    }
+                                    navController.navigate(route) {
+                                        navController.graph.startDestinationRoute?.let { route ->
+                                            popUpTo(route) {
+                                                saveState = true
+                                            }
+                                        }
+                                        launchSingleTop = true
+                                        restoreState = true
+                                    }
+                                }
+                            )
+                        }
+                    ) {
+                        NavGraph(
+                            navController,
+                            openDrawer = {
+                                openDrawer()
+                            }
+                        )
+                    }
+                }
+//                val navController = rememberNavController()
+//                NavGraph(navController = navController)
             }
         }
     }

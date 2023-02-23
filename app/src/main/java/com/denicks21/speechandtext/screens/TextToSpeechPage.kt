@@ -9,16 +9,18 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import com.denicks21.speechandtext.ui.composables.CustomToolbar
 import com.denicks21.speechandtext.ui.theme.GreyDark
 import com.denicks21.speechandtext.ui.theme.YellowDark
 import java.util.*
 
 @Composable
-fun TextToSpeech() {
+fun TextToSpeechPage(
+    navController: NavHostController,
+    openDrawer: () -> Unit,
+) {
     var tts: TextToSpeech? = null
     val context = LocalContext.current
 
@@ -29,7 +31,6 @@ fun TextToSpeech() {
         val scaffoldState = rememberScaffoldState()
         var textFieldState by remember { mutableStateOf("") }
         var isBtnEnabled by remember { mutableStateOf(true) }
-//        val scope = rememberCoroutineScope()
         var pitch by remember { mutableStateOf(1f) }
         var speechRate by remember { mutableStateOf(1f) }
 
@@ -37,21 +38,10 @@ fun TextToSpeech() {
             modifier = Modifier.fillMaxSize(),
             scaffoldState = scaffoldState,
             topBar = {
-                TopAppBar {
-                    Row(
-                        horizontalArrangement = Arrangement.Center,
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Text(
-                            "TextToSpeech",
-                            modifier = Modifier.fillMaxWidth(),
-                            color = GreyDark,
-                            fontSize = 25.sp,
-                            fontWeight = FontWeight.Bold,
-                            textAlign = TextAlign.Center
-                        )
-                    }
-                }
+                CustomToolbar(
+                    title = "Text To Speech",
+                    openDrawer
+                )
             },
         ) { it ->
             Box(
@@ -68,16 +58,18 @@ fun TextToSpeech() {
                 ) {
                     OutlinedTextField(
                         value = textFieldState,
-                        onValueChange = { textFieldState = it },
+                        onValueChange = {
+                            textFieldState = it
+                        },
                         label = {
                             Text(
-                                "Text to convert",
+                                text = "Text to convert",
                                 color = GreyDark
                             )
                         },
                         placeholder = {
                             Text(
-                                "Enter some text here",
+                                text = "Enter some text here",
                                 color = GreyDark
                             )
                         },
@@ -92,12 +84,16 @@ fun TextToSpeech() {
                             .fillMaxWidth()
                             .height(250.dp)
                     )
-                    Spacer(modifier = Modifier.height(35.dp))
+                    Spacer(
+                        modifier = Modifier.height(35.dp)
+                    )
                     Row(
                         horizontalArrangement = Arrangement.SpaceAround,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text("Pitch")
+                        Text(
+                            text = "Pitch"
+                        )
                         Slider(
                             value = pitch / 3,
                             onValueChange = { pitch = it * 3 },
@@ -108,7 +104,9 @@ fun TextToSpeech() {
                         horizontalArrangement = Arrangement.SpaceEvenly,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text("Speed")
+                        Text(
+                            text = "Speed"
+                        )
                         Slider(
                             value = speechRate / 3,
                             onValueChange = { speechRate = it * 3 },
@@ -130,9 +128,6 @@ fun TextToSpeech() {
                             onClick = {
                                 if (isBtnEnabled)
                                     isBtnEnabled = false
-//                                scope.launch {
-//                                    scaffoldState.snackbarHostState.showSnackbar(textFieldState)
-//                                }
                                 tts = TextToSpeech(
                                     context
                                 ) {

@@ -4,29 +4,32 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.denicks21.speechandtext.screens.HomeScreen
-import com.denicks21.speechandtext.screens.SpeechToText
-import com.denicks21.speechandtext.screens.SplashScreen
-import com.denicks21.speechandtext.screens.TextToSpeech
+import com.denicks21.speechandtext.screens.*
 
 @Composable
-fun NavGraph(navController: NavHostController) {
+fun NavGraph(
+    navController: NavHostController,
+    openDrawer: () -> Unit,
+) {
     NavHost(
         navController = navController,
-        startDestination = NavScreens.Splash.route
+        startDestination = NavScreens.IntroPage.route
     )
     {
-        composable(route = NavScreens.Splash.route) {
-            SplashScreen(navController = navController)
+        composable(route = NavScreens.IntroPage.route) {
+            IntroPage(navController)
         }
-        composable(route = NavScreens.Home.route) {
-            HomeScreen(navController = navController)
+        composable(route = NavScreens.HomePage.route) {
+            HomePage(navController, openDrawer)
         }
-        composable(route = NavScreens.SpeechToText.route) {
-            SpeechToText()
+        composable(route = NavScreens.SpeechToTextPage.route) {
+            SpeechToTextPage(navController, openDrawer)
         }
-        composable(route = NavScreens.TextToSpeech.route) {
-            TextToSpeech()
+        composable(route = NavScreens.TextToSpeechPage.route) {
+            TextToSpeechPage(navController, openDrawer)
+        }
+        composable(route = NavScreens.InfoPage.route) {
+            InfoPage(navController, openDrawer)
         }
     }
 }

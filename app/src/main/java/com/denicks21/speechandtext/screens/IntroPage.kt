@@ -25,10 +25,9 @@ import com.denicks21.speechandtext.ui.theme.GreyDark
 import kotlinx.coroutines.delay
 
 @Composable
-fun SplashScreen(navController: NavController) {
+fun IntroPage(navController: NavController) {
     val scale = remember { Animatable(0f) }
 
-    // AnimationEffect
     LaunchedEffect(key1 = true) {
         scale.animateTo(
             targetValue = 0.7f,
@@ -40,7 +39,7 @@ fun SplashScreen(navController: NavController) {
             )
         )
         delay(800L)
-        navController.navigate("Homescreen")
+        navController.navigate("HomePage")
     }
     Box(
         contentAlignment = Alignment.Center,

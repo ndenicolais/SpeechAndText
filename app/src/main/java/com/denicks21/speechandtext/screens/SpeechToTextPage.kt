@@ -14,10 +14,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.denicks21.speechandtext.MainActivity
+import com.denicks21.speechandtext.ui.composables.CustomToolbar
 import com.denicks21.speechandtext.ui.theme.GreyDark
 import com.denicks21.speechandtext.ui.theme.YellowDark
 import java.io.BufferedWriter
@@ -25,7 +26,10 @@ import java.io.File
 import java.io.FileOutputStream
 
 @Composable
-fun SpeechToText() {
+fun SpeechToTextPage(
+    navController: NavHostController,
+    openDrawer: () -> Unit,
+) {
     val inputDialogState = remember { mutableStateOf(false) }
     val fileName = remember { mutableStateOf("") }
     val context = LocalContext.current
@@ -36,21 +40,10 @@ fun SpeechToText() {
         modifier = Modifier.fillMaxSize(),
         scaffoldState = scaffoldState,
         topBar = {
-            TopAppBar {
-                Row(
-                    horizontalArrangement = Arrangement.Center,
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Text(
-                        "SpeechToText",
-                        modifier = Modifier.fillMaxWidth(),
-                        color = GreyDark,
-                        fontSize = 25.sp,
-                        fontWeight = FontWeight.Bold,
-                        textAlign = TextAlign.Center
-                    )
-                }
-            }
+            CustomToolbar(
+                title = "Speech To Text",
+                openDrawer
+            )
         },
     ) { it ->
         Box(
@@ -69,7 +62,9 @@ fun SpeechToText() {
                         .fillMaxWidth()
                         .padding(start = 10.dp, top = 30.dp)
                 )
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(
+                    modifier = Modifier.height(16.dp)
+                )
                 Row(
                     modifier = Modifier
                         .fillMaxSize()
@@ -82,7 +77,9 @@ fun SpeechToText() {
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     FloatingActionButton(
-                        onClick = { speechContext.askSpeechInput(context) },
+                        onClick = {
+                            speechContext.askSpeechInput(context)
+                        },
                         backgroundColor = YellowDark
                     ) {
                         Icon(
@@ -111,10 +108,12 @@ fun SpeechToText() {
                         )
                         if (inputDialogState.value) {
                             AlertDialog(
-                                onDismissRequest = { inputDialogState.value = false },
+                                onDismissRequest = {
+                                    inputDialogState.value = false
+                                },
                                 title = {
                                     Text(
-                                        "File Name",
+                                        text = "File Name",
                                         fontWeight = FontWeight.Bold
                                     )
                                 },
@@ -124,7 +123,7 @@ fun SpeechToText() {
                                         onValueChange = { fileName.value = it },
                                         label = {
                                             Text(
-                                                "Insert file's name",
+                                                text = "Insert file's name",
                                                 color = GreyDark
                                             )
                                         },
@@ -140,7 +139,10 @@ fun SpeechToText() {
                                 confirmButton = {
                                     Button(
                                         onClick = {
-                                            if (fileName.value.isNotEmpty() && speechContext.speechInput.value.isNotEmpty()) {
+                                            if (
+                                                fileName.value.isNotEmpty()
+                                                && speechContext.speechInput.value.isNotEmpty()
+                                            ) {
                                                 writeToFile(
                                                     context,
                                                     fileName.value,
@@ -160,17 +162,19 @@ fun SpeechToText() {
                                         }
                                     ) {
                                         Text(
-                                            "Ok",
+                                            text = "Ok",
                                             color = GreyDark
                                         )
                                     }
                                 },
                                 dismissButton = {
                                     Button(
-                                        onClick = { inputDialogState.value = false }
+                                        onClick = {
+                                            inputDialogState.value = false
+                                        }
                                     ) {
                                         Text(
-                                            "Cancel",
+                                            text = "Cancel",
                                             color = GreyDark
                                         )
                                     }
