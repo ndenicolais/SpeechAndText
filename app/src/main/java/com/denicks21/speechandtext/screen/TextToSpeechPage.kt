@@ -1,5 +1,6 @@
 package com.denicks21.speechandtext.screen
 
+import android.annotation.SuppressLint
 import android.speech.tts.TextToSpeech
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -16,6 +17,7 @@ import com.denicks21.speechandtext.ui.theme.GreyDark
 import com.denicks21.speechandtext.ui.theme.YellowDark
 import java.util.*
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun TextToSpeechPage(
     navController: NavHostController,
@@ -43,11 +45,10 @@ fun TextToSpeechPage(
                     openDrawer
                 )
             },
-        ) { it ->
+        ) {
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(it)
             ) {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -148,12 +149,12 @@ fun TextToSpeechPage(
                                 }
                                 isBtnEnabled = true
                             },
-                            backgroundColor = YellowDark
+                            backgroundColor = YellowDark,
+                            contentColor = GreyDark
                         ) {
                             Icon(
                                 imageVector = Icons.Filled.Mic,
-                                contentDescription = "Speak",
-                                tint = GreyDark
+                                contentDescription = "Speak"
                             )
                         }
                     }

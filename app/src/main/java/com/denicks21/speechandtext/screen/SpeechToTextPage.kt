@@ -1,5 +1,6 @@
 package com.denicks21.speechandtext.screen
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
@@ -25,6 +26,7 @@ import java.io.BufferedWriter
 import java.io.File
 import java.io.FileOutputStream
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun SpeechToTextPage(
     navController: NavHostController,
@@ -45,11 +47,10 @@ fun SpeechToTextPage(
                 openDrawer
             )
         },
-    ) { it ->
+    ) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(it)
         ) {
             Column(
                 modifier = Modifier.fillMaxSize(),
@@ -80,12 +81,12 @@ fun SpeechToTextPage(
                         onClick = {
                             speechContext.askSpeechInput(context)
                         },
-                        backgroundColor = YellowDark
+                        backgroundColor = YellowDark,
+                        contentColor = GreyDark
                     ) {
                         Icon(
                             imageVector = Icons.Filled.Mic,
-                            contentDescription = "Speak",
-                            tint = GreyDark
+                            contentDescription = "Speak"
                         )
                     }
                     FloatingActionButton(
@@ -99,12 +100,12 @@ fun SpeechToTextPage(
                                 ).show()
                             }
                         },
-                        backgroundColor = YellowDark
+                        backgroundColor = YellowDark,
+                        contentColor = GreyDark
                     ) {
                         Icon(
                             imageVector = Icons.Filled.Save,
-                            contentDescription = "Save",
-                            tint = GreyDark
+                            contentDescription = "Save text"
                         )
                         if (inputDialogState.value) {
                             AlertDialog(
@@ -113,7 +114,7 @@ fun SpeechToTextPage(
                                 },
                                 title = {
                                     Text(
-                                        text = "File Name",
+                                        text = "File's name",
                                         fontWeight = FontWeight.Bold
                                     )
                                 },

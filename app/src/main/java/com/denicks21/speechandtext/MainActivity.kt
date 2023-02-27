@@ -29,7 +29,7 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 class MainActivity : ComponentActivity() {
-    var speechInput = mutableStateOf("Speech text should come here")
+    var speechInput = mutableStateOf("")
 
     @OptIn(ExperimentalAnimationApi::class)
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
