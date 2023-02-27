@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.denicks21.speechandtext.screens.*
+import com.denicks21.speechandtext.screen.*
 
 @Composable
 fun NavGraph(
