@@ -23,8 +23,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.denicks21.speechandtext.navigation.NavScreens
 import com.denicks21.speechandtext.R
+import com.denicks21.speechandtext.ui.theme.GreyDark
 import com.denicks21.speechandtext.ui.theme.GreyLight
-import com.denicks21.speechandtext.ui.theme.YellowDark
 
 private val screens = listOf(
     NavScreens.HomePage,
@@ -52,7 +52,7 @@ fun CustomDrawer(
                 text = stringResource(
                     id = R.string.app_name
                 ),
-                color = YellowDark,
+                color = GreyDark,
                 fontWeight = FontWeight.Bold,
                 fontSize = 26.sp
             )
