@@ -2,7 +2,7 @@
 > <b>Author: Nicola De Nicolais</b>
 
 ## 📍 Description
-Android application created using the modern toolkit Jetpack Compose. Inside the app there is navigation between screens with the Navigation component. The screens in the app are splashscreen, homescreen and those containing the functions:<br>
+Android application built with Kotlin and Jetpack Compose that shows how to use the functions:<br>
 - **Speech-to-Text (STT)** that allow to receive the input voice through the reception from the microphone and to convert the audio into text and display it inside the box with the possibility to save the text inside a file with the extension ". txt".<br>
 - **Text-to-Speech (TTS)** that allow to insert a text inside the box and convert the text to audio with the option to choose the tone and speed of the voice that will play the text inserted. The entry will read the text in the language configured within the code.<br>
 
