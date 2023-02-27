@@ -1,4 +1,4 @@
-package com.denicks21.speechandtext.screens
+package com.denicks21.speechandtext.screen
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
@@ -19,6 +19,8 @@ import androidx.navigation.NavHostController
 import com.denicks21.speechandtext.R
 import com.denicks21.speechandtext.ui.composables.CustomToolbar
 import com.denicks21.speechandtext.ui.theme.GreyDark
+import com.denicks21.speechandtext.ui.theme.GreyLight
+import com.denicks21.speechandtext.ui.theme.YellowDark
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -47,6 +49,7 @@ fun InfoPage(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(15.dp),
+                        backgroundColor = GreyLight,
                         elevation = 10.dp
                     ) {
                         Column(
@@ -58,6 +61,7 @@ fun InfoPage(
                                 text = stringResource(
                                     id = R.string.app_name
                                 ),
+                                color = GreyDark,
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 26.sp
                             )
@@ -73,16 +77,41 @@ fun InfoPage(
                                 modifier = Modifier.height(10.dp)
                             )
                             Divider(
-                                thickness = 1.dp,
+                                thickness = 1.5.dp,
+                                color = GreyDark
+                            )
+                            Divider(
+                                thickness = 2.dp,
+                                color = YellowDark
+                            )
+                            Divider(
+                                thickness = 1.5.dp,
                                 color = GreyDark
                             )
                             Spacer(
                                 modifier = Modifier.height(10.dp)
                             )
                             Text(
-                                text = "Android application based on " +
-                                        "Jetpack Compose with Speech to Text " +
-                                        "and Text to Speech"
+                                text = ("Android application built with Kotlin and Jetpack Compose that shows how to use the functions: \n\n" +
+                                        "• Speech-to-Text (STT) that allow to receive the input voice through the reception from the microphone and to convert the audio into text and display it inside the box with the possibility to save the text inside a file with the extension .txt\n\n" +
+                                        "• Text-to-Speech (TTS) that allow to insert a text inside the box and convert the text to audio with the option to choose the tone and speed of the voice that will play the text inserted. The entry will read the text in the language configured within the code."
+                                        ),
+                                color = GreyDark
+                            )
+                            Spacer(
+                                modifier = Modifier.height(10.dp)
+                            )
+                            Divider(
+                                thickness = 1.5.dp,
+                                color = GreyDark
+                            )
+                            Divider(
+                                thickness = 2.dp,
+                                color = YellowDark
+                            )
+                            Divider(
+                                thickness = 1.5.dp,
+                                color = GreyDark
                             )
                         }
                     }
