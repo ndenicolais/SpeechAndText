@@ -1,4 +1,4 @@
-package com.denicks21.speechandtext.screens
+package com.denicks21.speechandtext.screen
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
@@ -7,11 +7,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.denicks21.speechandtext.BuildConfig
 import com.denicks21.speechandtext.navigation.NavScreens
 import com.denicks21.speechandtext.ui.composables.CustomToolbar
 import com.denicks21.speechandtext.ui.theme.GreyDark

@@ -1,4 +1,4 @@
-package com.denicks21.speechandtext.screens
+package com.denicks21.speechandtext.screen
 
 import android.content.Context
 import android.widget.Toast

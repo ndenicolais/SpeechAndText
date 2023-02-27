@@ -1,4 +1,4 @@
-package com.denicks21.speechandtext.screens
+package com.denicks21.speechandtext.screen
 
 import android.view.animation.OvershootInterpolator
 import androidx.compose.animation.core.Animatable

@@ -1,4 +1,4 @@
-package com.denicks21.speechandtext.screens
+package com.denicks21.speechandtext.screen
 
 import android.speech.tts.TextToSpeech
 import androidx.compose.foundation.layout.*
