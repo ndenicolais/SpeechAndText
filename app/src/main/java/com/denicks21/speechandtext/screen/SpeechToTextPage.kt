@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Mic
@@ -15,11 +17,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.denicks21.speechandtext.MainActivity
-import com.denicks21.speechandtext.ui.composables.CustomToolbar
+import com.denicks21.speechandtext.navigation.NavScreens.SpeechToTextPage.title
+import com.denicks21.speechandtext.ui.composables.CustomTopBar
 import com.denicks21.speechandtext.ui.theme.GreyDark
 import com.denicks21.speechandtext.ui.theme.YellowDark
 import java.io.BufferedWriter
@@ -32,25 +38,24 @@ fun SpeechToTextPage(
     navController: NavHostController,
     openDrawer: () -> Unit,
 ) {
+    val context = LocalContext.current
+    val speechContext = context as MainActivity
+    val scaffoldState = rememberScaffoldState()
     val inputDialogState = remember { mutableStateOf(false) }
     val fileName = remember { mutableStateOf("") }
-    val context = LocalContext.current
-    val scaffoldState = rememberScaffoldState()
-    val speechContext = context as MainActivity
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         scaffoldState = scaffoldState,
         topBar = {
-            CustomToolbar(
-                title = "Speech To Text",
+            CustomTopBar(
+                title,
                 openDrawer
             )
         },
     ) {
         Box(
-            modifier = Modifier
-                .fillMaxSize()
+            modifier = Modifier.fillMaxSize()
         ) {
             Column(
                 modifier = Modifier.fillMaxSize(),
@@ -63,17 +68,10 @@ fun SpeechToTextPage(
                         .fillMaxWidth()
                         .padding(start = 10.dp, top = 30.dp)
                 )
-                Spacer(
-                    modifier = Modifier.height(16.dp)
-                )
                 Row(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(
-                            start = 20.dp,
-                            end = 20.dp,
-                            bottom = 20.dp
-                        ),
+                        .padding(20.dp),
                     verticalAlignment = Alignment.Bottom,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
@@ -105,7 +103,7 @@ fun SpeechToTextPage(
                     ) {
                         Icon(
                             imageVector = Icons.Filled.Save,
-                            contentDescription = "Save text"
+                            contentDescription = "Save file"
                         )
                         if (inputDialogState.value) {
                             AlertDialog(
@@ -114,7 +112,7 @@ fun SpeechToTextPage(
                                 },
                                 title = {
                                     Text(
-                                        text = "File's name",
+                                        text = "Filename",
                                         fontWeight = FontWeight.Bold
                                     )
                                 },
@@ -124,17 +122,27 @@ fun SpeechToTextPage(
                                         onValueChange = { fileName.value = it },
                                         label = {
                                             Text(
-                                                text = "Insert file's name",
+                                                text = "Insert filename",
                                                 color = GreyDark
                                             )
                                         },
+                                        keyboardOptions = KeyboardOptions(
+                                            capitalization = KeyboardCapitalization.Sentences,
+                                            keyboardType = KeyboardType.Text,
+                                            imeAction = ImeAction.Next
+                                        ),
+                                        keyboardActions = KeyboardActions(
+                                            onDone = {
+                                                speechContext.speechInput.value.replaceFirstChar { it.uppercase() }
+                                            }
+                                        ),
                                         colors = TextFieldDefaults.outlinedTextFieldColors(
                                             textColor = GreyDark,
                                             backgroundColor = YellowDark,
                                             focusedBorderColor = GreyDark,
                                             unfocusedBorderColor = GreyDark,
                                             placeholderColor = GreyDark
-                                        )
+                                        ),
                                     )
                                 },
                                 confirmButton = {
@@ -150,6 +158,7 @@ fun SpeechToTextPage(
                                                     speechContext.speechInput.value
                                                 )
                                                 inputDialogState.value = false
+                                                speechContext.speechInput.value = ""
                                                 Toast.makeText(
                                                     context, "Saved",
                                                     Toast.LENGTH_SHORT
@@ -160,11 +169,14 @@ fun SpeechToTextPage(
                                                     Toast.LENGTH_SHORT
                                                 ).show()
                                             }
-                                        }
+                                        },
+                                        colors = ButtonDefaults.buttonColors(
+                                            backgroundColor = GreyDark
+                                        ),
                                     ) {
                                         Text(
-                                            text = "Ok",
-                                            color = GreyDark
+                                            text = "Save",
+                                            color = YellowDark
                                         )
                                     }
                                 },
@@ -172,11 +184,14 @@ fun SpeechToTextPage(
                                     Button(
                                         onClick = {
                                             inputDialogState.value = false
-                                        }
+                                        },
+                                        colors = ButtonDefaults.buttonColors(
+                                            backgroundColor = GreyDark
+                                        ),
                                     ) {
                                         Text(
                                             text = "Cancel",
-                                            color = GreyDark
+                                            color = YellowDark
                                         )
                                     }
                                 }
@@ -190,7 +205,7 @@ fun SpeechToTextPage(
 }
 
 fun writeToFile(context: Context, fileName: String, result: String) {
-    val f = File(context.getExternalFilesDir("FileFolder"), "$fileName.txt")
+    val f = File(context.getExternalFilesDir("SpeechAndText"), "$fileName.txt")
     if (!f.exists()) {
         f.createNewFile()
     }
