@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -17,7 +18,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.denicks21.speechandtext.R
-import com.denicks21.speechandtext.ui.composables.CustomToolbar
+import com.denicks21.speechandtext.navigation.NavScreens.InfoPage.title
+import com.denicks21.speechandtext.ui.composables.CustomTopBar
 import com.denicks21.speechandtext.ui.theme.GreyDark
 import com.denicks21.speechandtext.ui.theme.GreyLight
 import com.denicks21.speechandtext.ui.theme.YellowDark
@@ -28,10 +30,12 @@ fun InfoPage(
     navController: NavHostController,
     openDrawer: () -> Unit,
 ) {
+    val uriHandler = LocalUriHandler.current
+
     Scaffold(
         topBar = {
-            CustomToolbar(
-                title = "Info application",
+            CustomTopBar(
+                title,
                 openDrawer
             )
         },
@@ -74,7 +78,7 @@ fun InfoPage(
                                 modifier = Modifier.clip(CircleShape)
                             )
                             Spacer(
-                                modifier = Modifier.height(10.dp)
+                                modifier = Modifier.height(20.dp)
                             )
                             Divider(
                                 thickness = 1.5.dp,
@@ -92,9 +96,17 @@ fun InfoPage(
                                 modifier = Modifier.height(10.dp)
                             )
                             Text(
-                                text = ("Android application built with Kotlin and Jetpack Compose that shows how to use the functions: \n\n" +
-                                        "• Speech-to-Text (STT) that allow to receive the input voice through the reception from the microphone and to convert the audio into text and display it inside the box with the possibility to save the text inside a file with the extension .txt\n\n" +
-                                        "• Text-to-Speech (TTS) that allow to insert a text inside the box and convert the text to audio with the option to choose the tone and speed of the voice that will play the text inserted. The entry will read the text in the language configured within the code."
+                                text = (
+                                        "Android application built with Kotlin and Jetpack Compose " +
+                                                "that shows how to use the functions: \n\n" +
+                                        "• Speech-to-Text (STT) that allow to receive the input voice" +
+                                                " through the reception from the microphone and " +
+                                                "to convert the audio into text and display it inside the box " +
+                                                "with the possibility to save the text inside a file with the extension .txt\n\n" +
+                                        "• Text-to-Speech (TTS) that allow to insert a text inside the box " +
+                                                "and convert the text to audio with the option to choose the tone and " +
+                                                "speed of the voice that will play the text inserted. " +
+                                                "The entry will read the text in the language configured within the code."
                                         ),
                                 color = GreyDark
                             )
@@ -113,6 +125,29 @@ fun InfoPage(
                                 thickness = 1.5.dp,
                                 color = GreyDark
                             )
+                            Spacer(
+                                modifier = Modifier.height(15.dp)
+                            )
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.Center
+                            ) {
+                                IconButton(
+                                    modifier = Modifier.fillMaxSize(0.5f),
+                                    onClick = {
+                                        uriHandler.openUri(
+                                            "https://github.com/ndenicolais"
+                                        )
+                                    }
+                                ) {
+                                    Image(
+                                        painter = painterResource(
+                                            id = R.drawable.github_logo
+                                        ),
+                                        contentDescription = "Open Github"
+                                    )
+                                }
+                            }
                         }
                     }
                 }
