@@ -2,7 +2,6 @@
 <resources>
     <color name="yellow_light">#FFF0C8</color>
     <color name="yellow_dark">#FFE59E</color>
-    <color name="purple_700">#FF3700B3</color>
     <color name="grey_light">#979797</color>
     <color name="grey_dark">#3C3E4B</color>
     <color name="black">#FF000000</color>
