@@ -38,7 +38,7 @@ fun IntroPage(navController: NavController) {
                 }
             )
         )
-        delay(800L)
+        delay(500L)
         navController.navigate("HomePage")
     }
     Box(
