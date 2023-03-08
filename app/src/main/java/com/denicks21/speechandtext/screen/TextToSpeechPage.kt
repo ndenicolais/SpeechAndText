@@ -12,7 +12,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.denicks21.speechandtext.ui.composables.CustomToolbar
+import com.denicks21.speechandtext.navigation.NavScreens.TextToSpeechPage.title
+import com.denicks21.speechandtext.ui.composables.CustomTopBar
 import com.denicks21.speechandtext.ui.theme.GreyDark
 import com.denicks21.speechandtext.ui.theme.YellowDark
 import java.util.*
@@ -40,15 +41,14 @@ fun TextToSpeechPage(
             modifier = Modifier.fillMaxSize(),
             scaffoldState = scaffoldState,
             topBar = {
-                CustomToolbar(
-                    title = "Text To Speech",
+                CustomTopBar(
+                    title,
                     openDrawer
                 )
             },
         ) {
             Box(
-                modifier = Modifier
-                    .fillMaxSize()
+                modifier = Modifier.fillMaxSize()
             ) {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -117,11 +117,7 @@ fun TextToSpeechPage(
                     Column(
                         modifier = Modifier
                             .fillMaxSize()
-                            .padding(
-                                start = 20.dp,
-                                end = 20.dp,
-                                bottom = 20.dp
-                            ),
+                            .padding(20.dp),
                         verticalArrangement = Arrangement.Bottom,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
@@ -134,7 +130,6 @@ fun TextToSpeechPage(
                                 ) {
                                     if (it == TextToSpeech.SUCCESS) {
                                         tts?.let { txtToSpeech ->
-                                            // Change ITALIAN with your prefered language
                                             txtToSpeech.language = Locale.ITALIAN
                                             txtToSpeech.setPitch(pitch)
                                             txtToSpeech.setSpeechRate(speechRate)
