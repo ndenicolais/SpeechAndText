@@ -1,15 +1,12 @@
 package com.denicks21.speechandtext.navigation
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.RecordVoiceOver
-import androidx.compose.material.icons.filled.SettingsVoice
+import androidx.compose.material.icons.filled.*
 import androidx.compose.ui.graphics.vector.ImageVector
 
 sealed class NavScreens(val title: String, val route: String, var icon: ImageVector) {
     object IntroPage : NavScreens(
-        "Intro", "IntroPage", Icons.Default.Home
+        "Intro", "IntroPage", Icons.Default.Android
     )
 
     object HomePage : NavScreens(
