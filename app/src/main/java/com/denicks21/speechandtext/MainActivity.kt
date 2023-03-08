@@ -18,7 +18,6 @@ import androidx.compose.material.rememberDrawerState
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.navigation.compose.rememberNavController
 import com.denicks21.speechandtext.navigation.NavGraph
 import com.denicks21.speechandtext.ui.composables.CustomDrawer
 import com.denicks21.speechandtext.ui.theme.GreyDark
@@ -45,6 +44,7 @@ class MainActivity : ComponentActivity() {
                     )
                 }
                 val navController = rememberAnimatedNavController()
+
                 Surface {
                     val drawerState = rememberDrawerState(DrawerValue.Closed)
                     val scope = rememberCoroutineScope()
@@ -83,8 +83,6 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                 }
-//                val navController = rememberNavController()
-//                NavGraph(navController = navController)
             }
         }
     }
