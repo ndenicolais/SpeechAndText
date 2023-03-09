@@ -44,11 +44,11 @@ com.denicks21.speechandtext     # Root Package
 │   └── NavScreens              # Contains a sealed class with object corresponds to a screen and its routes.
 |
 ├── screen                      # App screens
-|   │   ├── HomePage            #.
-|   │   ├── InfoPage            #.
-|   │   ├── IntroPage           #.
-|   │   ├── SpeechToTextPage    #.
-|   │   ├── TextToSpeechPage    #.
+|   │   ├── HomePage            # Main page of the app.
+|   │   ├── InfoPage            # Page containing information about the app and developer profile.
+|   │   ├── IntroPage           # Splashscreen of the app.
+|   │   ├── SpeechToTextPage    # Page with the function Speech to Text.
+|   │   ├── TextToSpeechPage    # Page with the function Text to Speech.
 │
 ├── ui                          # UI resources
 │   ├── composables             # 
@@ -64,7 +64,7 @@ com.denicks21.speechandtext     # Root Package
 ├── MainActivity                # Main activity
 ```
 
-## 📎 Screen preview
+## 📎 Screenshots
 <p float="left">
 <img height="500em" src="screenshots/Screenshot01.png" title="SpeechToText's screen preview">
 <img height="500em" src="screenshots/Screenshot02.png" title="SpeechToText's screen preview">
