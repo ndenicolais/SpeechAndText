@@ -38,23 +38,30 @@ Permissions required in the AndroidManifest to use the functions:
 ## 🛠️ Package Structures
 
 ```
-com.denicks21.speechandtext # Root Package
-├── navigation              # Refers to the interactions that allow you to navigate in the app.
-│   ├── NavGraph            # Contains all of app destinations and actions.
-│   └── NavScreens          # Contains a sealed class with object corresponds to a screen and its routes.
-│
-├── ui                      # Fragment / View layer
-│   ├── composables         # 
-|   │   ├── CustomBackPress # Component that control and prevent back button action
-|   │   ├── CustomDrawer    # Navigation drawer menu with app screens
-|   │   ├── CustomTopBar    # Bar that represent the app name and drawer menu
+com.denicks21.speechandtext     # Root Package
+├── navigation                  # Refers to the interactions that allow you to navigate in the app.
+│   ├── NavGraph                # Contains all of app destinations and actions.
+│   └── NavScreens              # Contains a sealed class with object corresponds to a screen and its routes.
 |
-├── theme                   # Theme components
-|   │   ├── Color           # Color palette used by the app.
-|   │   ├── Shape           # Components shapes of Compose used by the app.
-|   │   ├── Theme           # Theme used by the app.
-|   │   ├── Type            # Typography styles for the fonts used by the app.
-├── MainActivity            # Main activity
+├── screen                      # App screens
+|   │   ├── HomePage            #.
+|   │   ├── InfoPage            #.
+|   │   ├── IntroPage           #.
+|   │   ├── SpeechToTextPage    #.
+|   │   ├── TextToSpeechPage    #.
+│
+├── ui                          # UI resources
+│   ├── composables             # 
+|   │   ├── CustomBackPress     # Component that control and prevent back button action
+|   │   ├── CustomDrawer        # Navigation drawer menu with app screens
+|   │   ├── CustomTopBar        # Bar that represent the app name and drawer menu
+|
+├── theme                       # Theme components
+|   │   ├── Color               # Color palette used by the app.
+|   │   ├── Shape               # Components shapes of Compose used by the app.
+|   │   ├── Theme               # Theme used by the app.
+|   │   ├── Type                # Typography styles for the fonts used by the app.
+├── MainActivity                # Main activity
 ```
 
 ## 📎 Screen preview
