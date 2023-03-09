@@ -8,7 +8,6 @@ Android application built with Kotlin and Jetpack Compose that shows how to use 
 
 ## ✏️ Customization
 You can custom some aspects of app:
-
 #### Save folder
 Change the path  where the text of Speech-to-Text file will be saved.
 If you want you can also avoid creating a folder in which to save files but let them be saved directly in the default folder
