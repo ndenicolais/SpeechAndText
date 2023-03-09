@@ -39,24 +39,24 @@ Permissions required in the AndroidManifest to use the functions:
 
 ```
 com.denicks21.speechandtext     # Root Package
-├── navigation                  # Refers to the interactions that allow you to navigate in the app.
+├── navigation                  # Navigation folder
 │   ├── NavGraph                # Contains all of app destinations and actions.
 │   └── NavScreens              # Contains a sealed class with object corresponds to a screen and its routes.
 |
-├── screen                      # App screens
+├── screen                      # App screens folder
 |   │   ├── HomePage            # Main page of the app.
 |   │   ├── InfoPage            # Page containing information about the app and developer profile.
 |   │   ├── IntroPage           # Splashscreen of the app.
 |   │   ├── SpeechToTextPage    # Page with the function Speech to Text.
 |   │   ├── TextToSpeechPage    # Page with the function Text to Speech.
 │
-├── ui                          # UI resources
+├── ui                          # UI resources folder
 │   ├── composables             # Composable components
 |   │   ├── CustomBackPress     # Component that control and prevent back button action.
 |   │   ├── CustomDrawer        # Navigation drawer menu with app screens.
 |   │   ├── CustomTopBar        # Bar that represent the app name and drawer menu.
 |
-├── theme                       # Theme components
+├── theme                       # Theme components folder
 |   │   ├── Color               # Color palette used by the app.
 |   │   ├── Shape               # Components shapes of Compose used by the app.
 |   │   ├── Theme               # Theme used by the app.
