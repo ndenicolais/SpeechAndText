@@ -51,10 +51,10 @@ com.denicks21.speechandtext     # Root Package
 |   │   ├── TextToSpeechPage    # Page with the function Text to Speech.
 │
 ├── ui                          # UI resources
-│   ├── composables             # 
-|   │   ├── CustomBackPress     # Component that control and prevent back button action
-|   │   ├── CustomDrawer        # Navigation drawer menu with app screens
-|   │   ├── CustomTopBar        # Bar that represent the app name and drawer menu
+│   ├── composables             # Composable components
+|   │   ├── CustomBackPress     # Component that control and prevent back button action.
+|   │   ├── CustomDrawer        # Navigation drawer menu with app screens.
+|   │   ├── CustomTopBar        # Bar that represent the app name and drawer menu.
 |
 ├── theme                       # Theme components
 |   │   ├── Color               # Color palette used by the app.
