@@ -7,16 +7,16 @@ Android application built with Kotlin and Jetpack Compose that shows how to use 
 #### Speech-to-Text (STT)
 About this, Android provides an Intent based API which launches Google's Speech Recognition service and returns back the text result to you. There is a catch though - the device will require Google Search app for the service to work.<br>
 In the app this function allows the user to:
-- Capture voice input from the device’s microphone.<br/>
-- Convert the input captured by the microphone and show it as text on the display.<br/>
-- Save the displayed text in a text file with extension .txt.<br/>
+- Capture voice input from the device’s microphone.
+- Convert the input captured by the microphone and show it as text on the display.
+- Save the displayed text in a text file with extension .txt.
 
 #### Text-to-Speech (TTS)
 About this, the Text-to-speech API, unlike Speech Recognition, is available without Google Services, and can be found in android.speech.tts package.<br/>
 In the app this function allows the user to:
-- Insert a text inside the box displayed on the display.<br/>
-- Set the tone and speed of the voice that reads the entered text.<br/>
-- Listen to the text inserted through the speaker of the device.<br/>
+- Insert a text inside the box displayed on the display.
+- Set the tone and speed of the voice that reads the entered text.
+- Listen to the text inserted through the speaker of the device.
 
 ## ✏️ Customization
 You can custom some aspects of app:
