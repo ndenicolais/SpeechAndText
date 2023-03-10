@@ -23,7 +23,7 @@ Change the value of *pitch's Slider* of Text-to-Speech to change how fast your d
 #### Speech rate
 Change the value of *speechRate's Slider* of Text-to-Speech to alter the tone of the spoken voice.
 
-## 🛠️ Package Structures
+## 🛠️ Package Structure
 
 ```
 com.denicks21.speechandtext     # Root Package
