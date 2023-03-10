@@ -23,21 +23,11 @@ Change the value of *pitch's Slider* of Text-to-Speech to change how fast your d
 #### Speech rate
 Change the value of *speechRate's Slider* of Text-to-Speech to alter the tone of the spoken voice.
 
-## 🔺 Manifest Permissions
-Permissions required in the AndroidManifest to use the functions:
-```
-<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-<uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
-<uses-permission android:name="android.permission.RECORD_AUDIO" />
-<uses-permission android:name="android.permission.INTERNET"/>
-```
-
-
 ## 🛠️ Package Structures
 
 ```
 com.denicks21.speechandtext     # Root Package
+|
 ├── navigation                  # Navigation folder
 │   ├── NavGraph                # Contains all of app destinations and actions.
 │   └── NavScreens              # Contains a sealed class with object corresponds to a screen and its routes.
@@ -60,6 +50,7 @@ com.denicks21.speechandtext     # Root Package
 |   │   ├── Shape               # Components shapes of Compose used by the app.
 |   │   ├── Theme               # Theme used by the app.
 |   │   ├── Type                # Typography styles for the fonts used by the app.
+|
 ├── MainActivity                # Main activity
 ```
 
