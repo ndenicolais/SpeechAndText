@@ -14,8 +14,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.denicks21.speechandtext.navigation.NavScreens
 import com.denicks21.speechandtext.navigation.NavScreens.HomePage.title
-import com.denicks21.speechandtext.ui.composables.CustomBackPress
-import com.denicks21.speechandtext.ui.composables.CustomTopBar
+import com.denicks21.speechandtext.ui.composables.BackPress
+import com.denicks21.speechandtext.ui.composables.TopBar
 import com.denicks21.speechandtext.ui.theme.GreyDark
 import com.denicks21.speechandtext.ui.theme.YellowDark
 
@@ -25,33 +25,26 @@ fun HomePage(
     navController: NavHostController,
     openDrawer: () -> Unit,
 ) {
-    CustomBackPress(
-        onBackPressed = {}
-    )
-
     val scaffoldState = rememberScaffoldState()
+
+    BackPress(onBackPressed = {})
     Scaffold(
         scaffoldState = scaffoldState,
         topBar = {
-            CustomTopBar(
+            TopBar(
                 title,
                 openDrawer
             )
         },
     ) {
-        Box(
-            modifier = Modifier.fillMaxSize()
-        ) {
+        Box(modifier = Modifier.fillMaxSize()) {
             Column(
-                modifier = Modifier
-                    .fillMaxSize(),
+                modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Button(
-                    onClick = {
-                        navController.navigate(NavScreens.SpeechToTextPage.route)
-                    },
+                    onClick = { navController.navigate(NavScreens.SpeechToTextPage.route) },
                     modifier = Modifier
                         .width(180.dp)
                         .height(80.dp)
@@ -61,25 +54,19 @@ fun HomePage(
                         5.dp,
                         YellowDark
                     ),
-                    colors = ButtonDefaults.buttonColors(
-                        backgroundColor = GreyDark
-                    ),
+                    colors = ButtonDefaults.buttonColors(backgroundColor = GreyDark),
                 ) {
                     Text(
-                        "Speech to Text",
+                        text = "Speech to Text",
                         modifier = Modifier.padding(5.dp),
                         color = YellowDark,
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold
                     )
                 }
-                Spacer(
-                    modifier = Modifier.height(30.dp)
-                )
+                Spacer(modifier = Modifier.height(30.dp))
                 Button(
-                    onClick = {
-                        navController.navigate(NavScreens.TextToSpeechPage.route)
-                    },
+                    onClick = { navController.navigate(NavScreens.TextToSpeechPage.route) },
                     modifier = Modifier
                         .width(180.dp)
                         .height(80.dp)
@@ -89,9 +76,7 @@ fun HomePage(
                         5.dp,
                         YellowDark
                     ),
-                    colors = ButtonDefaults.buttonColors(
-                        backgroundColor = GreyDark
-                    ),
+                    colors = ButtonDefaults.buttonColors(backgroundColor = GreyDark),
                 ) {
                     Text(
                         text = "Text to Speech",

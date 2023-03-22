@@ -19,7 +19,7 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
 import com.denicks21.speechandtext.navigation.NavGraph
-import com.denicks21.speechandtext.ui.composables.CustomDrawer
+import com.denicks21.speechandtext.ui.composables.NavigationDrawer
 import com.denicks21.speechandtext.ui.theme.GreyDark
 import com.denicks21.speechandtext.ui.theme.SpeechAndTextTheme
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
@@ -57,7 +57,7 @@ class MainActivity : ComponentActivity() {
                         drawerState = drawerState,
                         gesturesEnabled = drawerState.isOpen,
                         drawerContent = {
-                            CustomDrawer(
+                            NavigationDrawer(
                                 onDestinationClicked = { route ->
                                     scope.launch {
                                         drawerState.close()

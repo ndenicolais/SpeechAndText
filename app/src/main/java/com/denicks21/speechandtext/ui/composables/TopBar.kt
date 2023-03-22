@@ -1,10 +1,7 @@
 package com.denicks21.speechandtext.ui.composables
 
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
@@ -13,7 +10,7 @@ import androidx.compose.ui.unit.sp
 import com.denicks21.speechandtext.ui.theme.GreyDark
 
 @Composable
-fun CustomTopBar(
+fun TopBar(
     title: String,
     onButtonClicked: () -> Unit,
 ) {
@@ -27,17 +24,13 @@ fun CustomTopBar(
             )
         },
         navigationIcon = {
-            IconButton(
-                onClick = {
-                    onButtonClicked()
-                }
-            ) {
+            IconButton(onClick = { onButtonClicked() }) {
                 Icon(
-                    Icons.Default.Menu,
+                    imageVector = Icons.Default.Menu,
                     contentDescription = "Drawer Menu",
                     tint = GreyDark
                 )
             }
-        },
+        }
     )
 }

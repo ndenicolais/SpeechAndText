@@ -33,9 +33,7 @@ fun IntroPage(navController: NavController) {
             targetValue = 0.7f,
             animationSpec = tween(
                 durationMillis = 500,
-                easing = {
-                    OvershootInterpolator(4f).getInterpolation(it)
-                }
+                easing = { OvershootInterpolator(4f).getInterpolation(it) }
             )
         )
         delay(500L)
@@ -51,9 +49,7 @@ fun IntroPage(navController: NavController) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = stringResource(
-                    id = R.string.app_name
-                ),
+                text = stringResource(id = R.string.app_name),
                 modifier = Modifier.fillMaxWidth(),
                 color = GreyDark,
                 fontSize = 50.sp,
@@ -61,9 +57,7 @@ fun IntroPage(navController: NavController) {
                 textAlign = TextAlign.Center
             )
             Image(
-                painter = painterResource(
-                    id = R.drawable.logo
-                ),
+                painter = painterResource(id = R.drawable.logo),
                 contentDescription = "Logo",
                 modifier = Modifier
                     .scale(scale.value)

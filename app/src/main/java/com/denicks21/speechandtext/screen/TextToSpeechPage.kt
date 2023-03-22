@@ -13,7 +13,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.denicks21.speechandtext.navigation.NavScreens.TextToSpeechPage.title
-import com.denicks21.speechandtext.ui.composables.CustomTopBar
+import com.denicks21.speechandtext.ui.composables.TopBar
 import com.denicks21.speechandtext.ui.theme.GreyDark
 import com.denicks21.speechandtext.ui.theme.YellowDark
 import java.util.*
@@ -41,15 +41,13 @@ fun TextToSpeechPage(
             modifier = Modifier.fillMaxSize(),
             scaffoldState = scaffoldState,
             topBar = {
-                CustomTopBar(
+                TopBar(
                     title,
                     openDrawer
                 )
             },
         ) {
-            Box(
-                modifier = Modifier.fillMaxSize()
-            ) {
+            Box(modifier = Modifier.fillMaxSize()) {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier
@@ -59,9 +57,7 @@ fun TextToSpeechPage(
                 ) {
                     OutlinedTextField(
                         value = textFieldState,
-                        onValueChange = {
-                            textFieldState = it
-                        },
+                        onValueChange = { textFieldState = it },
                         label = {
                             Text(
                                 text = "Text to convert",
@@ -85,16 +81,12 @@ fun TextToSpeechPage(
                             .fillMaxWidth()
                             .height(250.dp)
                     )
-                    Spacer(
-                        modifier = Modifier.height(35.dp)
-                    )
+                    Spacer(modifier = Modifier.height(35.dp))
                     Row(
                         horizontalArrangement = Arrangement.SpaceAround,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text(
-                            text = "Pitch"
-                        )
+                        Text(text = "Pitch")
                         Slider(
                             value = pitch / 3,
                             onValueChange = { pitch = it * 3 },
@@ -105,9 +97,7 @@ fun TextToSpeechPage(
                         horizontalArrangement = Arrangement.SpaceEvenly,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text(
-                            text = "Speed"
-                        )
+                        Text(text = "Speed")
                         Slider(
                             value = speechRate / 3,
                             onValueChange = { speechRate = it * 3 },

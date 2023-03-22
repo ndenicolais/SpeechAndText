@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -33,7 +32,7 @@ private val screens = listOf(
 )
 
 @Composable
-fun CustomDrawer(
+fun NavigationDrawer(
     modifier: Modifier = Modifier,
     onDestinationClicked: (route: String) -> Unit,
 ) {
@@ -49,16 +48,12 @@ fun CustomDrawer(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = stringResource(
-                    id = R.string.app_name
-                ),
+                text = stringResource(id = R.string.app_name),
                 color = YellowDark,
                 fontWeight = FontWeight.Bold,
                 fontSize = 26.sp
             )
-            Spacer(
-                modifier = Modifier.height(10.dp)
-            )
+            Spacer(modifier = Modifier.height(10.dp))
             Image(
                 painter = painterResource(id = R.drawable.logo),
                 contentDescription = "Logo",
@@ -83,11 +78,7 @@ fun CustomDrawer(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clickable(
-                            onClick = {
-                                onDestinationClicked(screen.route)
-                            }
-                        )
+                        .clickable(onClick = { onDestinationClicked(screen.route) })
                         .height(45.dp)
                         .padding(start = 10.dp)
                 ) {
@@ -95,9 +86,7 @@ fun CustomDrawer(
                         imageVector = screen.icon,
                         contentDescription = screen.title
                     )
-                    Spacer(
-                        modifier = Modifier.height(10.dp)
-                    )
+                    Spacer(modifier = Modifier.height(10.dp))
                     Text(
                         text = screen.title,
                         modifier = Modifier
@@ -110,18 +99,14 @@ fun CustomDrawer(
                     thickness = 0.5.dp
                 )
             }
-            Spacer(
-                modifier = Modifier.weight(1f)
-            )
+            Spacer(modifier = Modifier.weight(1f))
             Text(
                 text = "Developed by DeNicks21 \n" +
                         "v." + com.denicks21.speechandtext.BuildConfig.VERSION_NAME,
+                modifier = Modifier.padding(bottom = 5.dp),
                 color = GreyDark,
-                textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.caption,
-                modifier = Modifier
-                    .padding(12.dp)
-                    .align(Alignment.CenterHorizontally)
+                fontSize = 12.sp,
+                textAlign = TextAlign.Center
             )
         }
     }

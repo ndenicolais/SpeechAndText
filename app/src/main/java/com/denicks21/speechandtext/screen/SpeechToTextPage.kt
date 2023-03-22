@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.denicks21.speechandtext.MainActivity
 import com.denicks21.speechandtext.navigation.NavScreens.SpeechToTextPage.title
-import com.denicks21.speechandtext.ui.composables.CustomTopBar
+import com.denicks21.speechandtext.ui.composables.TopBar
 import com.denicks21.speechandtext.ui.theme.GreyDark
 import com.denicks21.speechandtext.ui.theme.YellowDark
 import java.io.BufferedWriter
@@ -48,21 +48,19 @@ fun SpeechToTextPage(
         modifier = Modifier.fillMaxSize(),
         scaffoldState = scaffoldState,
         topBar = {
-            CustomTopBar(
+            TopBar(
                 title,
                 openDrawer
             )
         },
     ) {
-        Box(
-            modifier = Modifier.fillMaxSize()
-        ) {
+        Box(modifier = Modifier.fillMaxSize()) {
             Column(
                 modifier = Modifier.fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    speechContext.speechInput.value,
+                    text = speechContext.speechInput.value,
                     fontSize = 20.sp,
                     modifier = Modifier
                         .fillMaxWidth()
@@ -76,9 +74,7 @@ fun SpeechToTextPage(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     FloatingActionButton(
-                        onClick = {
-                            speechContext.askSpeechInput(context)
-                        },
+                        onClick = { speechContext.askSpeechInput(context) },
                         backgroundColor = YellowDark,
                         contentColor = GreyDark
                     ) {
@@ -107,9 +103,7 @@ fun SpeechToTextPage(
                         )
                         if (inputDialogState.value) {
                             AlertDialog(
-                                onDismissRequest = {
-                                    inputDialogState.value = false
-                                },
+                                onDismissRequest = { inputDialogState.value = false },
                                 title = {
                                     Text(
                                         text = "Filename",
@@ -182,9 +176,7 @@ fun SpeechToTextPage(
                                 },
                                 dismissButton = {
                                     Button(
-                                        onClick = {
-                                            inputDialogState.value = false
-                                        },
+                                        onClick = { inputDialogState.value = false },
                                         colors = ButtonDefaults.buttonColors(
                                             backgroundColor = GreyDark
                                         ),
