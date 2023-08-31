@@ -10,18 +10,21 @@ In the app this function allows the user to:
 - Capture voice input from the device’s microphone.
 - Convert the input captured by the microphone and show it as text on the display.
 - Save the displayed text in a text file with extension .txt.
+- View saved files and read them.
 
 #### Text-to-Speech (TTS)
 About this, the Text-to-speech API, unlike Speech Recognition, is available without Google Services, and can be found in android.speech.tts package.<br/>
 In the app this function allows the user to:
-- Insert a text inside the box displayed on the display.
-- Set the tone and speed of the voice that reads the entered text.
+- Insert an input keyboard text inside the box displayed on the display.
+- Import a saved text file.
+- Set the tone of the voice that reads the entered text.
+- Set the speed of the voice that reads the entered text.
 - Listen to the text inserted through the speaker of the device.
 
 ## 🔨  How to install and run the project
 Clone this repository :<br/>
 `
-git clone https://github.com/ndenicolais/Recorder.git
+git clone https://github.com/ndenicolais/SpeechAndText.git
 `
 
 Import the project into Android Studio :
