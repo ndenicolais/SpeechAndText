@@ -53,8 +53,8 @@ com.denicks21.speechandtext     # Root Package
 │
 ├── ui                          # UI resources folder
 │   ├── composables             # Composable components
-|   │   ├── CustomBackPress     # Component that control and prevent back button action.
-|   │   ├── CustomDrawer        # Navigation drawer menu with app screens.
+|   │   ├── BackPress           # Component that control and prevent back button action.
+|   │   ├── NavigationDrawer    # Navigation drawer menu with app screens.
 |   │   ├── CustomTopBar        # Bar that represent the app name and drawer menu.
 |
 ├── theme                       # Theme components folder
