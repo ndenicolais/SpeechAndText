@@ -11,20 +11,17 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.material.DrawerValue
-import androidx.compose.material.ModalDrawer
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.rememberDrawerState
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Modifier
 import com.denicks21.speechandtext.navigation.NavGraph
-import com.denicks21.speechandtext.ui.composables.NavigationDrawer
-import com.denicks21.speechandtext.ui.theme.GreyDark
 import com.denicks21.speechandtext.ui.theme.SpeechAndTextTheme
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import kotlinx.coroutines.launch
 import java.util.*
 
 class MainActivity : ComponentActivity() {
@@ -36,52 +33,27 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SpeechAndTextTheme {
+                val navController = rememberAnimatedNavController()
                 val systemUiController = rememberSystemUiController()
+                val statusBarColor = MaterialTheme.colors.surface
+                val navigationBarColor = MaterialTheme.colors.onSurface
+                val barIcons = isSystemInDarkTheme()
+
                 SideEffect {
                     systemUiController.setNavigationBarColor(
-                        GreyDark,
-                        darkIcons = false
+                        color = navigationBarColor,
+                        darkIcons = barIcons
+                    )
+                    systemUiController.setStatusBarColor(
+                        color = statusBarColor,
+                        darkIcons = true
                     )
                 }
-                val navController = rememberAnimatedNavController()
-
-                Surface {
-                    val drawerState = rememberDrawerState(DrawerValue.Closed)
-                    val scope = rememberCoroutineScope()
-                    val openDrawer = {
-                        scope.launch {
-                            drawerState.open()
-                        }
-                    }
-                    ModalDrawer(
-                        drawerState = drawerState,
-                        gesturesEnabled = drawerState.isOpen,
-                        drawerContent = {
-                            NavigationDrawer(
-                                onDestinationClicked = { route ->
-                                    scope.launch {
-                                        drawerState.close()
-                                    }
-                                    navController.navigate(route) {
-                                        navController.graph.startDestinationRoute?.let { route ->
-                                            popUpTo(route) {
-                                                saveState = true
-                                            }
-                                        }
-                                        launchSingleTop = true
-                                        restoreState = true
-                                    }
-                                }
-                            )
-                        }
-                    ) {
-                        NavGraph(
-                            navController,
-                            openDrawer = {
-                                openDrawer()
-                            }
-                        )
-                    }
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colors.surface
+                ) {
+                    NavGraph(navController)
                 }
             }
         }

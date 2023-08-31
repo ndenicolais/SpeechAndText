@@ -4,6 +4,8 @@ import android.view.animation.OvershootInterpolator
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Text
@@ -21,7 +23,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.denicks21.speechandtext.R
-import com.denicks21.speechandtext.ui.theme.GreyDark
+import com.denicks21.speechandtext.ui.theme.DarkGrey
+import com.denicks21.speechandtext.ui.theme.DarkSurface
+import com.denicks21.speechandtext.ui.theme.LightSurface
+import com.denicks21.speechandtext.ui.theme.LightYellow
 import kotlinx.coroutines.delay
 
 @Composable
@@ -41,7 +46,9 @@ fun IntroPage(navController: NavController) {
     }
     Box(
         contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .background(if (isSystemInDarkTheme()) DarkSurface else LightSurface)
+            .fillMaxSize()
     ) {
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -51,7 +58,7 @@ fun IntroPage(navController: NavController) {
             Text(
                 text = stringResource(id = R.string.app_name),
                 modifier = Modifier.fillMaxWidth(),
-                color = GreyDark,
+                color = if (isSystemInDarkTheme()) LightYellow else DarkGrey,
                 fontSize = 50.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center

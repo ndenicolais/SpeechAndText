@@ -21,7 +21,7 @@ sealed class NavScreens(val title: String, val route: String, var icon: ImageVec
         "Text to Speech", "TextToSpeechPage", Icons.Filled.SettingsVoice
     )
 
-    object InfoPage: NavScreens(
-        "Info", "InfoPage", Icons.Filled.Info
+    object FileListPage : NavScreens(
+        "File List Page", "FileListPage", Icons.Filled.SettingsVoice
     )
 }

@@ -3,31 +3,43 @@ package com.denicks21.speechandtext.screen
 import android.annotation.SuppressLint
 import android.content.Context
 import android.widget.Toast
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Mic
 import androidx.compose.material.icons.filled.Save
+import androidx.compose.material.icons.filled.Source
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.denicks21.speechandtext.MainActivity
-import com.denicks21.speechandtext.navigation.NavScreens.SpeechToTextPage.title
-import com.denicks21.speechandtext.ui.composables.TopBar
-import com.denicks21.speechandtext.ui.theme.GreyDark
-import com.denicks21.speechandtext.ui.theme.YellowDark
+import com.denicks21.speechandtext.navigation.NavScreens
+import com.denicks21.speechandtext.ui.theme.Confirm
+import com.denicks21.speechandtext.ui.theme.DarkGrey
+import com.denicks21.speechandtext.ui.theme.DarkSurface
+import com.denicks21.speechandtext.ui.theme.DarkText
+import com.denicks21.speechandtext.ui.theme.LightSurface
+import com.denicks21.speechandtext.ui.theme.LightText
+import com.denicks21.speechandtext.ui.theme.LightYellow
+import com.denicks21.speechandtext.ui.theme.Refuse
 import java.io.BufferedWriter
 import java.io.File
 import java.io.FileOutputStream
@@ -36,27 +48,47 @@ import java.io.FileOutputStream
 @Composable
 fun SpeechToTextPage(
     navController: NavHostController,
-    openDrawer: () -> Unit,
 ) {
     val context = LocalContext.current
     val speechContext = context as MainActivity
-    val scaffoldState = rememberScaffoldState()
     val inputDialogState = remember { mutableStateOf(false) }
     val fileName = remember { mutableStateOf("") }
 
-    Scaffold(
-        modifier = Modifier.fillMaxSize(),
-        scaffoldState = scaffoldState,
-        topBar = {
-            TopBar(
-                title,
-                openDrawer
+    Surface(modifier = Modifier.fillMaxSize()) {
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.Top
+        ) {
+            TopAppBar(
+                title = {
+                    Text(
+                        text = "Speech to Text",
+                        color = if (isSystemInDarkTheme()) DarkText else LightText
+                    )
+                },
+                navigationIcon = {
+                    IconButton(
+                        onClick = { navController.popBackStack() }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.ArrowBack,
+                            contentDescription = "Back",
+                            tint = if (isSystemInDarkTheme()) DarkText else LightText
+                        )
+                    }
+                },
+                backgroundColor = if (isSystemInDarkTheme()) LightYellow else DarkGrey
             )
-        },
-    ) {
-        Box(modifier = Modifier.fillMaxSize()) {
+        }
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = 80.dp)
+        ) {
             Column(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(bottom = 100.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
@@ -64,7 +96,8 @@ fun SpeechToTextPage(
                     fontSize = 20.sp,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(start = 10.dp, top = 30.dp)
+                        .padding(start = 10.dp),
+                    color = if (isSystemInDarkTheme()) LightYellow else DarkGrey
                 )
                 Row(
                     modifier = Modifier
@@ -75,12 +108,12 @@ fun SpeechToTextPage(
                 ) {
                     FloatingActionButton(
                         onClick = { speechContext.askSpeechInput(context) },
-                        backgroundColor = YellowDark,
-                        contentColor = GreyDark
+                        backgroundColor = if (isSystemInDarkTheme()) LightYellow else DarkGrey
                     ) {
                         Icon(
                             imageVector = Icons.Filled.Mic,
-                            contentDescription = "Speak"
+                            contentDescription = "Speak button",
+                            tint = if (isSystemInDarkTheme()) DarkGrey else LightYellow
                         )
                     }
                     FloatingActionButton(
@@ -94,12 +127,12 @@ fun SpeechToTextPage(
                                 ).show()
                             }
                         },
-                        backgroundColor = YellowDark,
-                        contentColor = GreyDark
+                        backgroundColor = if (isSystemInDarkTheme()) LightYellow else DarkGrey
                     ) {
                         Icon(
                             imageVector = Icons.Filled.Save,
-                            contentDescription = "Save file"
+                            contentDescription = "Save button",
+                            tint = if (isSystemInDarkTheme()) DarkGrey else LightYellow
                         )
                         if (inputDialogState.value) {
                             AlertDialog(
@@ -117,7 +150,7 @@ fun SpeechToTextPage(
                                         label = {
                                             Text(
                                                 text = "Insert filename",
-                                                color = GreyDark
+                                                color = if (isSystemInDarkTheme()) LightYellow else DarkGrey
                                             )
                                         },
                                         keyboardOptions = KeyboardOptions(
@@ -131,11 +164,11 @@ fun SpeechToTextPage(
                                             }
                                         ),
                                         colors = TextFieldDefaults.outlinedTextFieldColors(
-                                            textColor = GreyDark,
-                                            backgroundColor = YellowDark,
-                                            focusedBorderColor = GreyDark,
-                                            unfocusedBorderColor = GreyDark,
-                                            placeholderColor = GreyDark
+                                            textColor = if (isSystemInDarkTheme()) LightYellow else DarkGrey,
+                                            backgroundColor = if (isSystemInDarkTheme()) DarkSurface else LightSurface,
+                                            focusedBorderColor = if (isSystemInDarkTheme()) LightYellow else DarkGrey,
+                                            unfocusedBorderColor = if (isSystemInDarkTheme()) LightYellow else DarkGrey,
+                                            placeholderColor = if (isSystemInDarkTheme()) LightYellow else DarkGrey
                                         ),
                                     )
                                 },
@@ -146,7 +179,7 @@ fun SpeechToTextPage(
                                                 fileName.value.isNotEmpty()
                                                 && speechContext.speechInput.value.isNotEmpty()
                                             ) {
-                                                writeToFile(
+                                                writeFile(
                                                     context,
                                                     fileName.value,
                                                     speechContext.speechInput.value
@@ -165,12 +198,12 @@ fun SpeechToTextPage(
                                             }
                                         },
                                         colors = ButtonDefaults.buttonColors(
-                                            backgroundColor = GreyDark
+                                            backgroundColor = Confirm
                                         ),
                                     ) {
                                         Text(
                                             text = "Save",
-                                            color = YellowDark
+                                            color = Color.White
                                         )
                                     }
                                 },
@@ -178,12 +211,12 @@ fun SpeechToTextPage(
                                     Button(
                                         onClick = { inputDialogState.value = false },
                                         colors = ButtonDefaults.buttonColors(
-                                            backgroundColor = GreyDark
+                                            backgroundColor = Refuse
                                         ),
                                     ) {
                                         Text(
                                             text = "Cancel",
-                                            color = YellowDark
+                                            color = Color.White
                                         )
                                     }
                                 }
@@ -192,11 +225,46 @@ fun SpeechToTextPage(
                     }
                 }
             }
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(bottom = 10.dp),
+                verticalArrangement = Arrangement.Bottom,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Card(
+                    modifier = Modifier
+                        .clickable { navController.navigate(NavScreens.FileListPage.route) }
+                        .width(160.dp)
+                        .height(60.dp),
+                    shape = RoundedCornerShape(50.dp),
+                    backgroundColor = if (isSystemInDarkTheme()) LightYellow else DarkGrey,
+                    elevation = 4.dp
+                ) {
+                    Row(
+                        modifier = Modifier.padding(horizontal = 10.dp),
+                        horizontalArrangement = Arrangement.SpaceAround,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.Source,
+                            contentDescription = "File list button",
+                            tint = if (isSystemInDarkTheme()) DarkGrey else LightYellow
+                        )
+                        Text(
+                            text = "Filelist",
+                            color = if (isSystemInDarkTheme()) DarkGrey else LightYellow,
+                            fontSize = 22.sp,
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                }
+            }
         }
     }
 }
 
-fun writeToFile(context: Context, fileName: String, result: String) {
+fun writeFile(context: Context, fileName: String, result: String) {
     val f = File(context.getExternalFilesDir("SpeechAndText"), "$fileName.txt")
     if (!f.exists()) {
         f.createNewFile()
