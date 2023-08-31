@@ -49,10 +49,9 @@ If you want you can also avoid creating a folder in which to save files but let 
 
 #### Language
 Change the value of *txtToSpeech.language* to set your prefered language according the available languages listed in this doc:
-
 https://docs.oracle.com/javase/7/docs/api/java/util/Locale.html
 
-#### Pitch
+#### Pitch rate
 Change the value of *pitch's Slider* of Text-to-Speech to change how fast your device reads aloud.
 
 #### Speech rate
@@ -63,22 +62,22 @@ Change the value of *speechRate's Slider* of Text-to-Speech to alter the tone of
 ```
 com.denicks21.speechandtext     # Root Package
 |
-├── navigation                  # Navigation folder
+├── navigation                  # NAVIGATION FOLDER
 │   ├── NavGraph                # Contains all of app destinations and actions.
 │   └── NavScreens              # Contains a sealed class with object corresponds to a screen and its routes.
 |
-├── screen                      # App screens folder
+├── screen                      # SCREEN FOLDER
 |   │   ├── FileListPage        # Page containing saved text file list.
 |   │   ├── HomePage            # Main page of the app.
 |   │   ├── IntroPage           # Splashscreen of the app.
 |   │   ├── SpeechToTextPage    # Page with the function Speech to Text.
 |   │   ├── TextToSpeechPage    # Page with the function Text to Speech.
 │
-├── ui                          # UI resources folder
+├── ui                          # UI  FOLDER
 │   ├── composables             # Composable components
 |   │   ├── BackPress           # Component that control and prevent back button action.
 |
-├── theme                       # Theme components folder
+├── theme                       # THEME FOLDER
 |   │   ├── Color               # Color palette used by the app.
 |   │   ├── Shape               # Components shapes of Compose used by the app.
 |   │   ├── Theme               # Theme used by the app.
