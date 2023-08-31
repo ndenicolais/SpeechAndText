@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="yellow_light">#FFF0C8</color>
-    <color name="yellow_dark">#FFE59E</color>
-    <color name="grey_light">#979797</color>
-    <color name="grey_dark">#3C3E4B</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="lightsurface">#FFFFFFFF</color>
+    <color name="darksurface">#FF3C3E4B</color>
+    <color name="lightyellow">#FFFFF3E0</color>
+    <color name="darkyellow">#FFFFD152</color>
+    <color name="lightgrey">#FFCECECE</color>
+    <color name="darkgrey">#FF3C3E4B</color>
+    <color name="lighttext">#FFBEB083</color>
+    <color name="darktext">#FF852E2E</color>
 </resources>
