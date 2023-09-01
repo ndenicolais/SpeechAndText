@@ -197,7 +197,8 @@ fun HomePage(navController: NavHostController) {
                     ) {
                         Icon(
                             imageVector = Icons.Filled.Close,
-                            contentDescription = "Close dialog"
+                            contentDescription = "Close dialog",
+                            tint = if (isSystemInDarkTheme()) DarkText else LightText
                         )
                     }
                     Card(
@@ -232,17 +233,17 @@ fun HomePage(navController: NavHostController) {
                                         shape = CircleShape
                                     )
                             )
-                            Spacer(modifier = Modifier.height(20.dp))
+                            Spacer(modifier = Modifier.height(10.dp))
                             Divider(
                                 color = if (isSystemInDarkTheme()) LightText else DarkText,
-                                thickness = 2.dp
+                                thickness = 1.dp
                             )
                             Spacer(modifier = Modifier.height(10.dp))
                             Text(
                                 text = (
                                         "Android application built with Kotlin and Jetpack Compose " +
-                                                "that shows how to use the functions:\n\n" +
-                                                "Speech-to-Text (STT)\n\nText-to-Speech (TTS)"
+                                                "that shows how to use the Speech-to-Text & " +
+                                                "Text-to-Speech functions"
                                         ),
                                 color = if (isSystemInDarkTheme()) LightText else DarkText,
                                 textAlign = TextAlign.Center
@@ -250,29 +251,24 @@ fun HomePage(navController: NavHostController) {
                             Spacer(modifier = Modifier.height(10.dp))
                             Divider(
                                 color = if (isSystemInDarkTheme()) LightText else DarkText,
-                                thickness = 2.dp
+                                thickness = 1.dp
                             )
-                            Spacer(modifier = Modifier.height(15.dp))
+                            Spacer(modifier = Modifier.height(10.dp))
                             Text(
                                 text = "My GitHub",
                                 color = if (isSystemInDarkTheme()) LightText else DarkText,
                                 fontWeight = FontWeight.Bold,
-                                fontSize = 30.sp
+                                fontSize = 24.sp
                             )
                             Spacer(modifier = Modifier.height(5.dp))
-                            Row(
-                                modifier = Modifier.fillMaxWidth(),
-                                horizontalArrangement = Arrangement.Center
+                            IconButton(
+                                onClick = { uriHandler.openUri("https://github.com/ndenicolais") },
                             ) {
-                                IconButton(
-                                    onClick = { uriHandler.openUri("https://github.com/ndenicolais") },
-                                ) {
-                                    Image(
-                                        painter = painterResource(id = R.drawable.github_logo),
-                                        contentDescription = "Open Github",
-                                        colorFilter = ColorFilter.tint(if (isSystemInDarkTheme()) LightText else DarkText)
-                                    )
-                                }
+                                Image(
+                                    painter = painterResource(id = R.drawable.github_logo),
+                                    contentDescription = "Github image",
+                                    colorFilter = ColorFilter.tint(if (isSystemInDarkTheme()) LightText else DarkText)
+                                )
                             }
                         }
                     }
@@ -280,7 +276,7 @@ fun HomePage(navController: NavHostController) {
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 10.dp, bottom = 10.dp),
+                        .padding(vertical = 10.dp),
                     verticalArrangement = Arrangement.Bottom,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {

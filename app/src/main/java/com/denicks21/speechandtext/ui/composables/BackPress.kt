@@ -9,7 +9,7 @@ import androidx.compose.runtime.*
 fun BackPress(
     backPressedDispatcher: OnBackPressedDispatcher? =
         LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher,
-    onBackPressed: () -> Unit
+    onBackPressed: () -> Unit,
 ) {
     val currentOnBackPressed by rememberUpdatedState(newValue = onBackPressed)
     val backCallback = remember {
